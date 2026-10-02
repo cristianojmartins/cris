@@ -1,0 +1,10 @@
+import sqlite3
+conexao = sqlite3.connect('cris.db')
+cursor = conexao.cursor()
+cursor.execute('SELECT COUNT(*) FROM conhecimento;')
+resultado = cursor.fetchone()
+print(resultado)
+print(resultado[0])
+cursor.execute("SELECT resposta FROM conhecimento WHERE pergunta = 'qual é seu nome';")
+resposta = cursor.fetchone()
+print(resposta)
