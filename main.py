@@ -3,7 +3,7 @@ from nucleo.cris import Cris
 def iniciar():
     cris = Cris()
 
-    print("Cris 0.1 iniciada.")
+    print("Cris 0.2 iniciada.")
     print("Digite 'sair' para encerrar.")
 
     while True:

@@ -7,7 +7,7 @@ class Cris:
 
     def __init__(self):
         self.nome = "Cris"
-        self.versao = "0.1"
+        self.versao = "0.2"
         self.estado = "inicial"
         self.programador = ProgramadorPython()
         self.banco = "cris.db"
