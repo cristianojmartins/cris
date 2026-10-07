@@ -1,22 +1,22 @@
 from nucleo.cris import Cris
 
-def iniciar():
+
+def main():
     cris = Cris()
 
-    print("Cris 0.2 iniciada.")
+    print(f"Cris {cris.versao} iniciada.")
     print("Digite 'sair' para encerrar.")
 
     while True:
-        mensagem = input("Você: ")
+        mensagem = input("\033[32mVocê:\033[0m ")
 
-        if mensagem.strip().lower() == "sair":
-            print("Cris: Até mais!")
+        if mensagem.lower() == "sair":
+            print("Cris: Até logo!")
             break
 
         resposta = cris.processar(mensagem)
-
-        print("Cris:", resposta)
+        print(f"Cris: {resposta}")
 
 
 if __name__ == "__main__":
-    iniciar()
+    main()
