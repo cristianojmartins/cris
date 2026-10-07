@@ -1,3 +1,4 @@
+import sqlite3
 from ferramentas.programador import ProgramadorPython
 
 
@@ -8,6 +9,28 @@ class Cris:
         self.versao = "0.1"
         self.estado = "inicial"
         self.programador = ProgramadorPython()
+        self.banco = "cris.db"
+
+    def consultar_conhecimento(self, pergunta):
+        pergunta = pergunta.strip().lower()
+        pergunta = pergunta.rstrip("?!.")
+
+        conexao = sqlite3.connect(self.banco)
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT resposta FROM conhecimento WHERE pergunta = ?",
+            (pergunta,)
+        )
+
+        resultado = cursor.fetchone()
+
+        conexao.close()
+
+        if resultado:
+            return resultado[0]
+
+        return None
 
     def processar(self, comando):
 
@@ -30,7 +53,16 @@ class Cris:
         if "estado" in texto:
             return f"Meu estado atual é: {self.estado}."
 
+        conhecimento = self.consultar_conhecimento(texto)
+
+        if conhecimento:
+            return conhecimento
+
         if "python" in texto:
             return self.programador.analisar(comando)
 
         return f"Recebi: {comando}"
+
+
+if __name__ == "__main__":
+    pass
